@@ -4,20 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class APIResponse {
-    private Object result;
+    private HttpStatus httpStatus;
 
     private String message;
 
-    private HttpStatus httpStatus;
+    private Object result;
 
-    public APIResponse(String message, HttpStatus httpStatus){
+    public APIResponse(HttpStatus httpStatus, String message){
         this.message = message;
         this.httpStatus = httpStatus;
     }
