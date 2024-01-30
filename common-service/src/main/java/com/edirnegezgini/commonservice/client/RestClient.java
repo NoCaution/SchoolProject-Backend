@@ -21,7 +21,7 @@ public class RestClient implements IRestClient {
 
 
     @Override
-    public <T> Response<T> get(ClientEntity clientEntity, Class<T> targetClass) {
+    public <T> Response<T> send(ClientEntity clientEntity, Class<T> targetClass) {
         Request request = buildRequest(clientEntity);
         String token = clientEntity.getToken();
 
@@ -45,130 +45,7 @@ public class RestClient implements IRestClient {
     }
 
     @Override
-    public APIResponse get(ClientEntity clientEntity) {
-        Request request = buildRequest(clientEntity);
-        String token = clientEntity.getToken();
-
-        try {
-
-            return sendRequest(request, token);
-
-        } catch (IOException e) {
-
-            return new APIResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    "error while sending request"
-            );
-        }
-    }
-
-    @Override
-    public <T> Response<T> post(ClientEntity clientEntity, Class<T> targetClass) {
-        Request request = buildRequest(clientEntity);
-        String token = clientEntity.getToken();
-
-        try {
-
-            APIResponse response = sendRequest(request, token);
-            T result = customModelMapper.map(response.getResult(), targetClass);
-
-            return new Response<>(
-                    result,
-                    HttpStatus.OK
-            );
-
-        } catch (IOException e) {
-
-            return new Response<>(
-                    HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
-    }
-
-    @Override
-    public APIResponse post(ClientEntity clientEntity) {
-        Request request = buildRequest(clientEntity);
-        String token = clientEntity.getToken();
-
-        try {
-
-            return sendRequest(request, token);
-
-        } catch (IOException e) {
-
-            return new APIResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    "error while sending request"
-            );
-        }
-    }
-
-    @Override
-    public <T> Response<T> put(ClientEntity clientEntity, Class<T> targetClass) {
-        Request request = buildRequest(clientEntity);
-        String token = clientEntity.getToken();
-
-        try {
-
-            APIResponse response = sendRequest(request, token);
-            T result = customModelMapper.map(response, targetClass);
-
-            return new Response<>(
-                    result,
-                    HttpStatus.OK
-            );
-
-        } catch (IOException e) {
-
-            return new Response<>(
-                    HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
-    }
-
-    @Override
-    public APIResponse put(ClientEntity clientEntity) {
-        Request request = buildRequest(clientEntity);
-        String token = clientEntity.getToken();
-
-        try {
-
-            return sendRequest(request, token);
-
-        } catch (IOException e) {
-
-            return new APIResponse(
-                    HttpStatus.INTERNAL_SERVER_ERROR,
-                    "error while sending request"
-            );
-        }
-    }
-
-    @Override
-    public <T> Response<T> delete(ClientEntity clientEntity, Class<T> targetClass) {
-        Request request = buildRequest(clientEntity);
-        String token = clientEntity.getToken();
-
-        try {
-
-            APIResponse response = sendRequest(request, token);
-            T result = customModelMapper.map(response, targetClass);
-
-            return new Response<>(
-                    result,
-                    HttpStatus.OK
-            );
-
-        } catch (IOException e) {
-
-            return new Response<>(
-                    HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
-    }
-
-    @Override
-    public APIResponse delete(ClientEntity clientEntity) {
+    public APIResponse send(ClientEntity clientEntity) {
         Request request = buildRequest(clientEntity);
         String token = clientEntity.getToken();
 
@@ -199,11 +76,11 @@ public class RestClient implements IRestClient {
         String url = clientEntity.getUrl();
 
         switch (requestType) {
-            case POST -> request = Request.Post(clientEntity.getUrl()).body(clientEntity.getBody());
+            case POST -> request = Request.Post(url).body(clientEntity.getBody());
 
-            case PUT -> request = Request.Put(clientEntity.getUrl()).body(clientEntity.getBody());
+            case PUT -> request = Request.Put(url).body(clientEntity.getBody());
 
-            case DELETE -> request = Request.Delete(clientEntity.getUrl());
+            case DELETE -> request = Request.Delete(url);
 
             default -> request = Request.Get(url);
         }

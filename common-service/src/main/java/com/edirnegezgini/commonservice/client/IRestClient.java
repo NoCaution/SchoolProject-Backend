@@ -4,19 +4,8 @@ import com.edirnegezgini.commonservice.entity.APIResponse;
 import com.edirnegezgini.commonservice.entity.Response;
 
 public interface IRestClient {
-    <T> Response<T> get(ClientEntity clientEntity, Class<T> targetClass);
+    <T> Response<T> send(ClientEntity clientEntity, Class<T> targetClass);
 
-    APIResponse get(ClientEntity clientEntity);
+    APIResponse send(ClientEntity clientEntity);
 
-    <T> Response<T> post(ClientEntity clientEntity, Class<T> targetClass);
-
-    APIResponse post(ClientEntity clientEntity);
-
-    <T> Response<T> put(ClientEntity clientEntity, Class<T> targetClass);
-
-    APIResponse put(ClientEntity clientEntity);
-
-    <T> Response<T> delete(ClientEntity clientEntity, Class<T> targetClass);
-
-    APIResponse delete(ClientEntity clientEntity);
 }
