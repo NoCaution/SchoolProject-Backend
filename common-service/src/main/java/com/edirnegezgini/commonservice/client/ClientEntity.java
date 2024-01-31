@@ -1,14 +1,10 @@
 package com.edirnegezgini.commonservice.client;
 
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.http.HttpEntity;
 
 @Getter
-@Setter
 @NoArgsConstructor
 public class ClientEntity {
     private HttpEntity body;
@@ -20,48 +16,50 @@ public class ClientEntity {
     @Setter(AccessLevel.NONE)
     private RequestType requestType;
 
-    private ClientEntity(String url, String token) {
+    private ClientEntity(String url, String token, RequestType requestType) {
         this.url = url;
         this.token = token;
+        this.requestType = requestType;
     }
 
-    private ClientEntity(String url, String token, HttpEntity body) {
+    private ClientEntity(String url, String token, HttpEntity body, RequestType requestType) {
         this.url = url;
         this.token = token;
         this.body = body;
+        this.requestType = requestType;
     }
 
     public ClientEntity get(String url, String token) {
-        this.requestType = RequestType.GET;
         return new ClientEntity(
                 url,
-                token
+                token,
+                RequestType.GET
         );
     }
 
     public ClientEntity put(String url, String token, HttpEntity body) {
-        this.requestType = RequestType.PUT;
         return new ClientEntity(
                 url,
                 token,
-                body
+                body,
+                RequestType.PUT
         );
     }
 
     public ClientEntity post(String url, String token, HttpEntity body) {
-        this.requestType = RequestType.POST;
         return new ClientEntity(
                 url,
                 token,
-                body
+                body,
+                RequestType.POST
         );
     }
 
     public ClientEntity delete(String url, String token) {
-        this.requestType = RequestType.DELETE;
         return new ClientEntity(
                 url,
-                token
+                token,
+                RequestType.DELETE
         );
     }
 }
