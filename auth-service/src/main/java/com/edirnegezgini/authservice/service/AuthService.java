@@ -4,7 +4,7 @@ import com.edirnegezgini.authservice.entity.dto.AuthenticationRequestDto;
 import com.edirnegezgini.authservice.entity.dto.RegistrationRequestDto;
 import com.edirnegezgini.authservice.repository.AuthRepository;
 import com.edirnegezgini.commonservice.entity.APIResponse;
-import com.edirnegezgini.authservice.entity.dto.User;
+import com.edirnegezgini.authservice.entity.User;
 import com.edirnegezgini.commonservice.util.CustomModelMapper;
 import com.edirnegezgini.commonservice.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;

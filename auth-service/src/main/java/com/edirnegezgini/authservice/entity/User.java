@@ -1,6 +1,6 @@
-package com.edirnegezgini.authservice.entity.dto;
+package com.edirnegezgini.authservice.entity;
 
-import com.edirnegezgini.commonservice.entity.Enum.Role;
+import com.edirnegezgini.commonservice.entity.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,6 +40,7 @@ public class User implements UserDetails {
 
     private String phoneNumber;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     private Date createdAt;
