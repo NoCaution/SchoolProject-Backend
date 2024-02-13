@@ -12,7 +12,7 @@ spring:
         locator:
           lower-case-service-id: true
           enabled: true
-
+      default-filters: ApiGatewayFilter
 eureka:
   client:
     instance-info-replication-interval-seconds: 5
@@ -26,3 +26,6 @@ application:
   security:
     jwt:
       secret-key: 8f3ca84c5122366a19f7804e71c432fc639c7817903321a43879fe8c436c2311
+  service:
+    user-service: "http://localhost:9000/user-service/api/"
+
