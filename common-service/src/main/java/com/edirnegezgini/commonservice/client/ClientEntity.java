@@ -13,7 +13,6 @@ public class ClientEntity {
 
     private String token;
 
-    @Setter(AccessLevel.NONE)
     private RequestType requestType;
 
     private ClientEntity(String url, String token, RequestType requestType) {

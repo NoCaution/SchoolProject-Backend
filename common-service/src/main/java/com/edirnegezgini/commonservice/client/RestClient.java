@@ -28,6 +28,13 @@ public class RestClient implements IRestClient {
         try {
 
             APIResponse response = sendRequest(request, token);
+
+            if (response.getHttpStatus() != HttpStatus.OK) {
+                return new Response<>(
+                        response.getHttpStatus()
+                );
+            }
+
             T result = customModelMapper.map(response.getResult(), targetClass);
 
             return new Response<>(

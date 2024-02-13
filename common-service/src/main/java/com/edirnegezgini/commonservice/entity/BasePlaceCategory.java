@@ -1,4 +1,4 @@
-package com.edirnegezgini.commonservice.entity.Enum;
+package com.edirnegezgini.commonservice.entity;
 
 public enum BasePlaceCategory {
     accommodation,
