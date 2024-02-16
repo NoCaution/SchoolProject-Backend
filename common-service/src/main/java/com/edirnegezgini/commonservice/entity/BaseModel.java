@@ -14,20 +14,21 @@ import java.util.UUID;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BasePlace {
+public abstract class BaseModel {
 
-    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
     @Id
-    private UUID id;
+    protected UUID id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @CreatedDate
-    private Date createdAt;
+    protected Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
-    private Date updatedAt;
+    protected Date updatedAt;
+
 
 }
