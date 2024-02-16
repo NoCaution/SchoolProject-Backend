@@ -1,5 +1,6 @@
 package com.edirnegezgini.userservice.entity;
 
+import com.edirnegezgini.commonservice.entity.BaseModel;
 import com.edirnegezgini.commonservice.entity.Role;
 import com.edirnegezgini.commonservice.entity.dto.UpdateUserDto;
 import jakarta.persistence.*;
@@ -19,12 +20,7 @@ import java.util.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User implements UserDetails {
-
-    @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private UUID id;
+public class User extends BaseModel implements UserDetails {
 
     private String name;
 
@@ -39,9 +35,17 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    private Date createdAt;
+    public User(UUID id, String name, String lastName, String email, String password, String phoneNumber, Role role, Date createdAt){
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.createdAt = createdAt;
+    }
 
-    private Date updatedAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -82,8 +86,7 @@ public class User implements UserDetails {
                 this.password,
                 Objects.equals(this.phoneNumber, dto.getPhoneNumber()) ? this.phoneNumber : dto.getPhoneNumber(),
                 this.role,
-                this.createdAt,
-                this.updatedAt
+                this.createdAt
         );
     }
 }

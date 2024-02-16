@@ -1,5 +1,6 @@
 package com.edirnegezgini.authservice.entity;
 
+import com.edirnegezgini.commonservice.entity.BaseModel;
 import com.edirnegezgini.commonservice.entity.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,9 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -21,12 +20,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class User implements UserDetails {
-
-    @Column(nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private UUID id;
+public class User extends BaseModel implements UserDetails {
 
     private String name;
 
@@ -42,10 +36,6 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    private Date createdAt;
-
-    private Date updatedAt;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
