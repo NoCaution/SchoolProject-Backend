@@ -104,7 +104,7 @@ public class ApiGatewayFilter extends AbstractGatewayFilterFactory<ApiGatewayFil
 
                 } else {
                     customHeaderValue = token;
-                    request = exchange.getRequest().mutate().header("CustomAuthorization", customHeaderValue).build();
+                    request = request.mutate().header("CustomAuthorization", customHeaderValue).build();
                 }
             }
 
