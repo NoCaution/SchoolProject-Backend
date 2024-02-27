@@ -19,15 +19,15 @@ public abstract class BasePlace {
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private UUID id;
+    protected UUID id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @CreatedDate
-    private Date createdAt;
+    protected Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
-    private Date updatedAt;
+    protected Date updatedAt;
 
 }
