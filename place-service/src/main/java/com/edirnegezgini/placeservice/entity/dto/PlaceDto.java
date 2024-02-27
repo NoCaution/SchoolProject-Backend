@@ -1,6 +1,6 @@
-package com.edirnegezgini.placeservice.entity.Dto;
+package com.edirnegezgini.placeservice.entity.dto;
 
-import com.edirnegezgini.commonservice.entity.Enum.PlaceCategory;
+import com.edirnegezgini.commonservice.entity.PlaceCategory;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
