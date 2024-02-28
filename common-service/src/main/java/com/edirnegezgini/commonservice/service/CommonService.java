@@ -1,5 +1,6 @@
 package com.edirnegezgini.commonservice.service;
 
+import com.edirnegezgini.commonservice.entity.Role;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +17,11 @@ public class CommonService {
         }
 
         return null;
+    }
+
+    public boolean isAdminRequest(User authenticatedUser){
+        String role = authenticatedUser.getAuthorities().stream().toList().get(0).getAuthority();
+        return Role.valueOf(role) == Role.ADMIN;
     }
 
 }
