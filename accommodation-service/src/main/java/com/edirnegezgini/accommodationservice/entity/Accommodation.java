@@ -1,7 +1,7 @@
 package com.edirnegezgini.accommodationservice.entity;
 
 import com.edirnegezgini.commonservice.entity.AccommodationCategory;
-import com.edirnegezgini.commonservice.entity.BaseModel;
+import com.edirnegezgini.commonservice.entity.BasePlace;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,7 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Accommodation extends BaseModel {
+public class Accommodation extends BasePlace {
     private String title;
 
     private byte[] image;
