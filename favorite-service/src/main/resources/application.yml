@@ -23,5 +23,14 @@ eureka:
   instance:
     hostname: localhost
 
+application:
+  security:
+    jwt:
+      secret-key: 8f3ca84c5122366a19f7804e71c432fc639c7817903321a43879fe8c436c2311
+  service:
+    accommodation-service: "http://localhost:9000/accommodation-service/api/"
+    place-service: "http://localhost:9000/place-service/api/"
+    restaurant-service: "http://localhost:9000/restaurant-service/api/"
+
 server:
   port: 0
