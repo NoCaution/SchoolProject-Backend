@@ -23,5 +23,10 @@ eureka:
   instance:
     hostname: localhost
 
+application:
+  security:
+    jwt:
+      secret-key: 8f3ca84c5122366a19f7804e71c432fc639c7817903321a43879fe8c436c2311
+
 server:
   port: 0
