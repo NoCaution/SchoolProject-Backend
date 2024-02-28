@@ -206,7 +206,6 @@ public class FavoriteService {
     }
 
     private String buildUrl(BasePlaceCategory category, UUID uuid) {
-        String url;
         StringBuilder stringBuilder = new StringBuilder();
         String id = uuid.toString();
 
@@ -218,8 +217,7 @@ public class FavoriteService {
             default -> stringBuilder.append(placeServiceUrl).append("getPlace/").append(id);
         }
 
-        url = stringBuilder.toString();
-        return url;
+        return stringBuilder.toString();
     }
 
     private Favorite findById(UUID id) {
