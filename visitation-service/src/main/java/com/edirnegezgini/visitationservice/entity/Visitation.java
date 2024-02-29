@@ -22,6 +22,8 @@ import java.util.UUID;
 public class Visitation extends BasePlace {
     private UUID visitedPlaceId;
 
+    private UUID userId;
+
     @Enumerated(EnumType.STRING)
     private BasePlaceCategory category;
 

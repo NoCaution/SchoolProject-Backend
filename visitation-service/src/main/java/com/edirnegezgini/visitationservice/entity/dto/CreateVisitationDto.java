@@ -15,6 +15,8 @@ import java.util.UUID;
 public class CreateVisitationDto {
     private UUID visitedPlaceId;
 
+    private UUID userId;
+
     private BasePlaceCategory category;
 
     private String note;
