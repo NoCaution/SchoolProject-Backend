@@ -1,7 +1,7 @@
 package com.edirnegezgini.restaurantservice.config;
 
+import com.edirnegezgini.commonservice.util.CustomModelMapper;
 import com.edirnegezgini.commonservice.util.JWTUtil;
-import com.edirnegezgini.commonservice.util.JwtToken;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,7 +13,7 @@ public class CommonServiceConfig {
     }
 
     @Bean
-    public JwtToken jwtToken(){
-        return new JwtToken();
+    public CustomModelMapper customModelMapper(){
+        return new CustomModelMapper();
     }
 }

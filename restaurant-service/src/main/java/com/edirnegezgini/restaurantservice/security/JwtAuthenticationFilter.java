@@ -1,13 +1,11 @@
 package com.edirnegezgini.restaurantservice.security;
 
 import com.edirnegezgini.commonservice.util.JWTUtil;
-import com.edirnegezgini.commonservice.util.JwtToken;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,14 +20,9 @@ import java.util.Set;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    @Value("${application.security.jwt.secret-key}")
-    private String secretKey;
-
     @Autowired
     private JWTUtil jwtUtil;
 
-    @Autowired
-    private JwtToken jwtToken;
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
@@ -73,7 +66,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
 
-                jwtToken.setToken(secretKey, token);
             }
 
             filterChain.doFilter(request, response);
