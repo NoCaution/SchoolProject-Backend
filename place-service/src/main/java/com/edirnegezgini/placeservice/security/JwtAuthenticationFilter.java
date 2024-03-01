@@ -35,6 +35,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String[] headerValues = header.split(" ");
 
+        if(headerValues.length < 4){
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         String token = headerValues[0];
         String id = headerValues[1];
         String password = headerValues[2];
