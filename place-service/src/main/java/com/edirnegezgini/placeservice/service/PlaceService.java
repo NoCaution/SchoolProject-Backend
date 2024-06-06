@@ -1,6 +1,7 @@
 package com.edirnegezgini.placeservice.service;
 
 import com.edirnegezgini.commonservice.entity.APIResponse;
+import com.edirnegezgini.commonservice.entity.PlaceCategory;
 import com.edirnegezgini.commonservice.util.CustomModelMapper;
 import com.edirnegezgini.placeservice.entity.dto.CreatePlaceDto;
 import com.edirnegezgini.placeservice.entity.dto.PlaceDto;
@@ -26,6 +27,26 @@ public class PlaceService {
         List<Place> placeList = placeRepository.findAll();
 
         if (placeList.isEmpty()) {
+            return new APIResponse(
+                    HttpStatus.OK,
+                    "success",
+                    placeList
+            );
+        }
+
+        List<PlaceDto> placeDtoList = customModelMapper.convertList(placeList, PlaceDto.class);
+
+        return new APIResponse(
+                HttpStatus.OK,
+                "success",
+                placeDtoList
+        );
+    }
+
+    public APIResponse getAllByCategory(PlaceCategory category) {
+        List<Place> placeList = placeRepository.findAllByCategory(category);
+
+        if(placeList.isEmpty()) {
             return new APIResponse(
                     HttpStatus.OK,
                     "success",

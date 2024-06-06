@@ -1,6 +1,7 @@
 package com.edirnegezgini.placeservice.controller;
 
 import com.edirnegezgini.commonservice.entity.APIResponse;
+import com.edirnegezgini.commonservice.entity.PlaceCategory;
 import com.edirnegezgini.placeservice.entity.dto.CreatePlaceDto;
 import com.edirnegezgini.placeservice.entity.dto.UpdatePlaceDto;
 import com.edirnegezgini.placeservice.service.PlaceService;
@@ -20,6 +21,11 @@ public class PlaceController {
     @GetMapping("/getAll")
     public APIResponse getAll(){
         return placeService.getAll();
+    }
+
+    @GetMapping("/getAllByCategory")
+    public APIResponse getAllByCategory(@RequestParam PlaceCategory category) {
+        return placeService.getAllByCategory(category);
     }
 
     @GetMapping("/getPlace/{id}")
