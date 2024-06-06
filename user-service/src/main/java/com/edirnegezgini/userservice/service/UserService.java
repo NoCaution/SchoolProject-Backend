@@ -1,9 +1,7 @@
 package com.edirnegezgini.userservice.service;
 
 import com.edirnegezgini.commonservice.entity.APIResponse;
-import com.edirnegezgini.commonservice.entity.Role;
 import com.edirnegezgini.commonservice.entity.dto.UpdateUserDto;
-import com.edirnegezgini.commonservice.entity.dto.UserDetailsDto;
 import com.edirnegezgini.commonservice.entity.dto.UserDto;
 import com.edirnegezgini.commonservice.service.CommonService;
 import com.edirnegezgini.commonservice.util.CustomModelMapper;
@@ -49,19 +47,21 @@ public class UserService implements UserDetailsService {
         }
 
         UUID id = UUID.fromString(userDetails.getUsername());
-        String password = userDetails.getPassword();
-        Role role = Role.valueOf(userDetails.getAuthorities().stream().toList().get(0).getAuthority());
+        User loggedInUser = getById(id);
 
-        UserDetailsDto userDetailsDto = new UserDetailsDto(
-                id,
-                password,
-                role
-        );
+        if (loggedInUser == null) {
+            return new APIResponse(
+                    HttpStatus.NOT_FOUND,
+                    "user not found"
+            );
+        }
+
+        UserDto userDto = customModelMapper.map(loggedInUser, UserDto.class);
 
         return new APIResponse(
                 HttpStatus.OK,
                 "success",
-                userDetailsDto
+                userDto
         );
     }
 
@@ -187,6 +187,10 @@ public class UserService implements UserDetailsService {
                 HttpStatus.OK,
                 "success"
         );
+    }
+
+    private User getById(UUID id) {
+        return userRepository.findById(id).orElse(null);
     }
 
 
