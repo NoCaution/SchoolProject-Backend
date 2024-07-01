@@ -16,7 +16,7 @@ public class RestaurantDto {
 
     private String title;
 
-    private byte[] image;
+    private String image;
 
     private String info;
 

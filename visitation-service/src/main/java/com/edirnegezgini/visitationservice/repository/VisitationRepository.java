@@ -13,4 +13,6 @@ public interface VisitationRepository extends JpaRepository<Visitation, UUID> {
     List<Visitation> findAllByCategory(BasePlaceCategory category);
 
     List<Visitation> findAllByCategoryAndUserId(BasePlaceCategory category, UUID userId);
+
+    List<Visitation> findAllByUserId(UUID userId);
 }

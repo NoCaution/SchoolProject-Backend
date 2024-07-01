@@ -22,6 +22,11 @@ public class VisitationController {
         return visitationService.getVisitation(id);
     }
 
+    @GetMapping("/getAuthenticatedUserVisitations")
+    public APIResponse getAuthenticatedUserVisitations() {
+        return visitationService.getAuthenticatedUserVisitations();
+    }
+
     @GetMapping("/getAllByCategory")
     public APIResponse getAllByCategory(@RequestParam BasePlaceCategory category) {
         return visitationService.getAllByCategory(category);

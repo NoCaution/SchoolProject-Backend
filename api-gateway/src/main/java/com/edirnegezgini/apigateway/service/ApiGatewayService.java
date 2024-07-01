@@ -4,6 +4,7 @@ import com.edirnegezgini.commonservice.client.ClientEntity;
 import com.edirnegezgini.commonservice.client.RestClient;
 import com.edirnegezgini.commonservice.entity.Response;
 import com.edirnegezgini.commonservice.entity.dto.UserDetailsDto;
+import org.apache.http.client.fluent.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,8 @@ public class ApiGatewayService {
         );
 
         Response<UserDetailsDto> getUserResponse = restClient.send(clientEntity, UserDetailsDto.class);
+
+
 
         if (getUserResponse.getHttpStatus() != HttpStatus.OK) {
             return new Response<>(

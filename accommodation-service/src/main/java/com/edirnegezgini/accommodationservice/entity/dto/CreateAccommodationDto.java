@@ -13,7 +13,7 @@ import lombok.Setter;
 public class CreateAccommodationDto {
     private String title;
 
-    private byte[] image;
+    private String image;
 
     private String info;
 

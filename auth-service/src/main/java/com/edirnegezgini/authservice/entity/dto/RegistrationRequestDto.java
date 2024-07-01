@@ -1,6 +1,6 @@
 package com.edirnegezgini.authservice.entity.dto;
 
-import com.edirnegezgini.commonservice.entity.Enum.Role;
+import com.edirnegezgini.commonservice.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +21,5 @@ public class RegistrationRequestDto {
 
     private String phoneNumber;
 
-    private Role role = Role.USER;
+    private Role role;
 }

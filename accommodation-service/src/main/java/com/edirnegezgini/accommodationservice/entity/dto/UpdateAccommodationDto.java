@@ -17,7 +17,7 @@ public class UpdateAccommodationDto {
 
     private String title;
 
-    private byte[] image;
+    private String image;
 
     private String info;
 

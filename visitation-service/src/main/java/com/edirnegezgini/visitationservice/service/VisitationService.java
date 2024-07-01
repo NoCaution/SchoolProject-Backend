@@ -70,6 +70,27 @@ public class VisitationService {
         );
     }
 
+    public APIResponse getAuthenticatedUserVisitations() {
+        UUID authenticatedUserId = UUID.fromString(commonService.getLoggedInUser().getUsername());
+        List<Visitation> visitationList = visitationRepository.findAllByUserId(authenticatedUserId);
+
+        if(visitationList.isEmpty()) {
+            return new APIResponse(
+                    HttpStatus.OK,
+                    "success",
+                    visitationList
+            );
+        }
+
+        List<VisitationDto> visitationDtoList = customModelMapper.convertList(visitationList, VisitationDto.class);
+
+        return new APIResponse(
+                HttpStatus.OK,
+                "success",
+                visitationDtoList
+        );
+    }
+
     public APIResponse getAll() {
         List<Visitation> visitationList = visitationRepository.findAll();
 

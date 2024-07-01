@@ -24,10 +24,10 @@ public class AccommodationService {
     private CustomModelMapper customModelMapper;
 
 
-    public APIResponse createAccommodation(CreateAccommodationDto createAccommodationDto){
+    public APIResponse createAccommodation(CreateAccommodationDto createAccommodationDto) {
         Accommodation checkAccommodation = accommodationRepository.findByTitle(createAccommodationDto.getTitle());
 
-        if(checkAccommodation != null){
+        if (checkAccommodation != null) {
             return new APIResponse(
                     HttpStatus.BAD_REQUEST,
                     "this accommodation already exists"
@@ -44,10 +44,10 @@ public class AccommodationService {
         );
     }
 
-    public APIResponse getAccommodation(UUID id){
+    public APIResponse getAccommodation(UUID id) {
         Accommodation accommodation = findById(id);
 
-        if(accommodation == null){
+        if (accommodation == null) {
             return new APIResponse(
                     HttpStatus.NOT_FOUND,
                     "no accommodation found"
@@ -63,10 +63,10 @@ public class AccommodationService {
         );
     }
 
-    public APIResponse getAll(){
+    public APIResponse getAll() {
         List<Accommodation> accommodationList = accommodationRepository.findAll();
 
-        if(accommodationList.isEmpty()){
+        if (accommodationList.isEmpty()) {
             return new APIResponse(
                     HttpStatus.OK,
                     "success",
@@ -83,10 +83,10 @@ public class AccommodationService {
         );
     }
 
-    public APIResponse getAllByCategory(AccommodationCategory category){
+    public APIResponse getAllByCategory(AccommodationCategory category) {
         List<Accommodation> accommodationList = accommodationRepository.findAllByCategory(category);
 
-        if(accommodationList.isEmpty()){
+        if (accommodationList.isEmpty()) {
             return new APIResponse(
                     HttpStatus.OK,
                     "success",
@@ -103,10 +103,10 @@ public class AccommodationService {
         );
     }
 
-    public APIResponse updateAccommodation(UpdateAccommodationDto updateAccommodationDto){
+    public APIResponse updateAccommodation(UpdateAccommodationDto updateAccommodationDto) {
         Accommodation accommodation = findById(updateAccommodationDto.getId());
 
-        if(accommodation == null){
+        if (accommodation == null) {
             return new APIResponse(
                     HttpStatus.NOT_FOUND,
                     "no accommodation found"
@@ -123,10 +123,10 @@ public class AccommodationService {
         );
     }
 
-    public APIResponse deleteAccommodation(UUID id){
+    public APIResponse deleteAccommodation(UUID id) {
         Accommodation accommodation = findById(id);
 
-        if(accommodation == null){
+        if (accommodation == null) {
             return new APIResponse(
                     HttpStatus.NOT_FOUND,
                     "no accommodation found"
@@ -141,11 +141,11 @@ public class AccommodationService {
         );
     }
 
-    private Accommodation findById(UUID id){
+    private Accommodation findById(UUID id) {
         return accommodationRepository.findById(id).orElse(null);
     }
 
-    private Accommodation updateFields(Accommodation accommodation, UpdateAccommodationDto updateAccommodationDto){
+    private Accommodation updateFields(Accommodation accommodation, UpdateAccommodationDto updateAccommodationDto) {
         accommodation.setCategory(updateAccommodationDto.getCategory());
         accommodation.setInfo(updateAccommodationDto.getInfo());
         accommodation.setTitle(updateAccommodationDto.getTitle());

@@ -21,7 +21,7 @@ public class PlaceDto {
 
     private String location;
 
-    private byte[] image;
+    private String image;
 
     private PlaceCategory category;
 }

@@ -19,35 +19,35 @@ public class AccommodationController {
 
 
     @GetMapping("/getAccommodation/{id}")
-    public APIResponse getAccommodation(@PathVariable UUID id){
+    public APIResponse getAccommodation(@PathVariable UUID id) {
         return accommodationService.getAccommodation(id);
     }
 
     @GetMapping("/getAll")
-    public APIResponse getAll(){
+    public APIResponse getAll() {
         return accommodationService.getAll();
     }
 
     @GetMapping("/getAllByCategory")
-    public APIResponse getAllByCategory(@RequestParam AccommodationCategory category){
+    public APIResponse getAllByCategory(@RequestParam AccommodationCategory category) {
         return accommodationService.getAllByCategory(category);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/createAccommodation")
-    public APIResponse createAccommodation(@RequestBody CreateAccommodationDto createAccommodationDto){
+    public APIResponse createAccommodation(@RequestBody CreateAccommodationDto createAccommodationDto) {
         return accommodationService.createAccommodation(createAccommodationDto);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateAccommodation")
-    public APIResponse updateAccommodation(@RequestBody UpdateAccommodationDto updateAccommodationDto){
+    public APIResponse updateAccommodation(@RequestBody UpdateAccommodationDto updateAccommodationDto) {
         return accommodationService.updateAccommodation(updateAccommodationDto);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/deleteAccommodation/{id}")
-    public APIResponse deleteAccommodation(@PathVariable UUID id){
+    public APIResponse deleteAccommodation(@PathVariable UUID id) {
         return accommodationService.deleteAccommodation(id);
     }
 }

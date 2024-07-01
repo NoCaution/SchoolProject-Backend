@@ -3,10 +3,7 @@ package com.edirnegezgini.placeservice.entity;
 import com.edirnegezgini.commonservice.entity.BasePlace;
 import com.edirnegezgini.commonservice.entity.PlaceCategory;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 
 @Entity
@@ -15,15 +12,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Place extends BasePlace {
+
+    @Column(unique = true)
     private String title;
 
+    @Column(length = 2048)
     private String info;
 
     private String location;
-
-    @Lob
-    private byte[] image;
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private PlaceCategory category;

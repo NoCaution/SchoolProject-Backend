@@ -1,6 +1,7 @@
 package com.edirnegezgini.restaurantservice.entity;
 
 import com.edirnegezgini.commonservice.entity.BasePlace;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -17,8 +18,9 @@ import lombok.Setter;
 public class Restaurant extends BasePlace {
     private String title;
 
-    private byte[] image;
+    private String image;
 
+    @Column(length = 2048)
     private String info;
 
     private String location;

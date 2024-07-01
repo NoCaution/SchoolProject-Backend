@@ -2,25 +2,59 @@ server:
   port: 9000
 
 spring:
-  main:
-    web-application-type: reactive
   application:
     name: api-gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          lower-case-service-id: true
-          enabled: true
-      default-filters: ApiGatewayFilter
-eureka:
-  client:
-    instance-info-replication-interval-seconds: 5
-    registry-fetch-interval-seconds: 5
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
+      filter:
+        remove-hop-by-hop:
+          headers:
+            - Proxy-Authenticate
+            - Proxy-Authorization
+            - TE
+            - Trailer
+        request-rate-limiter:
+          enabled: false
+      httpclient:
+        connect-timeout: 20000
+        response-timeout: 20000
+#      discovery:
+#        locator:
+#          lower-case-service-id: true
+#          enabled: true
+      default-filters:
+        - name: ApiGatewayFilter
+          args:
+            retries: 3
+      routes:
+        - id: accommodation-service
+          uri: http://localhost:54660
+          predicates:
+              - Path=/accommodation-service/**
+        - id: auth-service
+          uri: http://localhost:54676
+          predicates:
+            - Path=/auth-service/**
+        - id: favorite-service
+          uri: http://localhost:54707
+          predicates:
+            - Path=/favorite-service/**
+        - id: place-service
+          uri: http://localhost:54731
+          predicates:
+            - Path=/place-service/**
+        - id: user-service
+          uri: http://localhost:54741
+          predicates:
+            - Path=/user-service/**
+        - id: visitation-service
+          uri: http://localhost:54745
+          predicates:
+            - Path=/visitation-service/**
+        - id: restaurant-service
+          uri: http://localhost:54623
+          predicates:
+            - Path=/restaurant-service/**
 
 application:
   security:
@@ -29,3 +63,11 @@ application:
   service:
     user-service: "http://localhost:9000/user-service/api/"
 
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.http: DEBUG
+    org.springframework.boot: DEBUG
+    org.springframework: INFO

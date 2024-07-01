@@ -14,15 +14,6 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
-eureka:
-  client:
-    instance-info-replication-interval-seconds: 5
-    registry-fetch-interval-seconds: 5
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
-
 application:
   security:
     jwt:
@@ -32,5 +23,16 @@ application:
     place-service: "http://localhost:9000/place-service/api/"
     restaurant-service: "http://localhost:9000/restaurant-service/api/"
 
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.http: DEBUG
+    org.springframework.boot: DEBUG
+    org.springframework: INFO
+
 server:
-  port: 0
+  port: 54707
+  servlet:
+    context-path: /

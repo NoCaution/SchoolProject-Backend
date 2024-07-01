@@ -2,6 +2,7 @@ package com.edirnegezgini.userservice.service;
 
 import com.edirnegezgini.commonservice.entity.APIResponse;
 import com.edirnegezgini.commonservice.entity.dto.UpdateUserDto;
+import com.edirnegezgini.commonservice.entity.dto.UserDetailsDto;
 import com.edirnegezgini.commonservice.entity.dto.UserDto;
 import com.edirnegezgini.commonservice.service.CommonService;
 import com.edirnegezgini.commonservice.util.CustomModelMapper;
@@ -56,7 +57,7 @@ public class UserService implements UserDetailsService {
             );
         }
 
-        UserDto userDto = customModelMapper.map(loggedInUser, UserDto.class);
+        UserDetailsDto userDto = customModelMapper.map(loggedInUser, UserDetailsDto.class);
 
         return new APIResponse(
                 HttpStatus.OK,
